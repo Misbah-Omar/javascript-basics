@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>My Todo App</title>
     </head>
     <body>
         <button>Press me</button>
@@ -9,7 +9,15 @@
             let todo1 = 'Get groceries';
             let todo2 = 'Wash car';
             let todo3 = 'Make dinner';
-            alert('Hello')
+            
+            function addTodo(todoTitle) {
+                let element = document.createElement('div');
+                element.innerText = todoTitle;
+                document.body.appendChild(element);   
+            }
+            addTodo(todo1);
+            addTodo(todo2);
+            addTodo(todo3);
         </script>
     </body>
 </html>
