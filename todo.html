@@ -12,21 +12,36 @@
         
         <script>
 
-            
+
             // Model
-            let todos = [{
-                title: 'Get groceries',
-                dueDate: '2023-10-04',
-                id: 'id1'
-            }, {
-                title: 'Wash car',
-                dueDate: '2023-11-08',
-                id: 'id2'
-            }, {
-                title: 'Make dinner',
-                dueDate: '2023-08-24',
-                id: 'id3'
-            }];
+            // if local storage has a todos array, then use it
+            // else use the default values
+            let todos;
+
+            // retrieve local storage
+            const savedTodos = JSON.parse(localStorage.getItem('todos'));
+            // Check if it is an array
+            if(Array.isArray(savedTodos)) {
+                todos = savedTodos;
+
+            }
+            else{
+                    todos = [{
+                    title: 'Get groceries',
+                    dueDate: '10-04-2023',
+                    id: 'id1'
+                }, {
+                    title: 'Wash car',
+                    dueDate: '11-08-2023',
+                    id: 'id2'
+                }, {
+                    title: 'Make dinner',
+                    dueDate: '08-24-2023',
+                    id: 'id3'
+                }];
+            }
+
+           
 
             // Creates a Todo
             function createTodo(title, dueDate){
@@ -36,6 +51,7 @@
                     dueDate: dueDate,
                     id: id
                 });
+                saveTodos();
 
             }
 
@@ -52,7 +68,14 @@
                         return true;
                     }
                 });
+
+                saveTodos();
             }
+
+            function saveTodos() {
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+
 
             render();
 
